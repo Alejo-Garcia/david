@@ -1,12 +1,7 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
+import './i18n';
 import React from 'react';
 import type {PropsWithChildren} from 'react';
+import {useTranslation} from 'react-i18next';
 import {
   SafeAreaView,
   ScrollView,
@@ -56,6 +51,7 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 }
 
 function App(): React.JSX.Element {
+  const {t} = useTranslation();
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -87,7 +83,9 @@ function App(): React.JSX.Element {
             <DebugInstructions />
           </Section>
           <Section title="Learn More">
-            Read the docs to discover what to do next:
+            {t('EXAMPLE_SCREEN.EXAMPLE_COMPONENT__DESCRIPTION', {
+              value: 'test value',
+            })}
           </Section>
           <LearnMoreLinks />
         </View>

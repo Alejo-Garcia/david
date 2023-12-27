@@ -1,0 +1,5 @@
+{
+  "EXAMPLE_SCREEN": {
+    "EXAMPLE_COMPONENT__DESCRIPTION": "Example text, {{ value }}"
+  }
+}
