@@ -1,115 +1,78 @@
 import './i18n';
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {useTranslation} from 'react-i18next';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+  StaticParamList,
+  createStaticNavigation,
+} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {CountriesList, CountryDetail, SettingsList, SignIn} from '@screens';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
-  const {t} = useTranslation();
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        backgroundColor={backgroundStyle.backgroundColor}
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            {t('EXAMPLE_SCREEN.EXAMPLE_COMPONENT__DESCRIPTION', {
-              value: 'test value',
-            })}
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  highlight: {
-    fontWeight: '700',
+const AuthStack = createNativeStackNavigator({
+  initialRouteName: 'SignIn',
+  screenOptions: {
+    animation: 'fade',
+    headerShown: false,
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionDescription: {
-    fontSize: 18,
-    fontWeight: '400',
-    marginTop: 8,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  screens: {
+    SignIn,
   },
 });
+
+const CountriesStack = createNativeStackNavigator({
+  initialRouteName: 'CountriesList',
+  screenOptions: {
+    headerShown: true,
+  },
+  screens: {
+    CountriesList,
+    CountryDetail,
+  },
+});
+
+const SettingsStack = createNativeStackNavigator({
+  initialRouteName: 'SettingsList',
+  screenOptions: {
+    headerShown: true,
+  },
+  screens: {
+    SettingsList,
+  },
+});
+
+const CoreStack = createBottomTabNavigator({
+  initialRouteName: 'CountriesStack',
+  screenOptions: {
+    headerShown: false,
+  },
+  screens: {
+    CountriesStack,
+    SettingsStack,
+  },
+});
+
+const RootStack = createNativeStackNavigator({
+  initialRouteName: 'AuthStack',
+  screenOptions: {
+    headerShown: false,
+  },
+  screens: {
+    AuthStack,
+    CoreStack,
+  },
+});
+
+type RootStackParamList = StaticParamList<typeof RootStack>;
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
+}
+
+const Navigation = createStaticNavigation(RootStack);
+
+function App() {
+  return <Navigation />;
+}
 
 export default App;
