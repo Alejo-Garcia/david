@@ -9,13 +9,10 @@ import {initReactI18next} from 'react-i18next';
 import * as RNLocalize from 'react-native-localize';
 
 const languageDetector: LanguageDetectorAsyncModule = {
-  type: 'languageDetector',
   async: true,
-  init: (
-    _services: Services,
-    _detectorOptions: object,
-    _i18nextOptions: InitOptions,
-  ) => {},
+  cacheUserLanguage: (lng: string) => {
+    AsyncStorage.setItem('APP_LANG', lng);
+  },
   detect: (callback: (lng: string) => void) => {
     AsyncStorage.getItem('APP_LANG', (err, lng) => {
       if (err || !lng) {
@@ -32,20 +29,23 @@ const languageDetector: LanguageDetectorAsyncModule = {
       callback(lng);
     });
   },
-  cacheUserLanguage: (lng: string) => {
-    AsyncStorage.setItem('APP_LANG', lng);
-  },
+  init: (
+    _services: Services,
+    _detectorOptions: object,
+    _i18nextOptions: InitOptions,
+  ) => {},
+  type: 'languageDetector',
 };
 
 i18n
   .use(languageDetector)
   .use(initReactI18next)
   .init({
-    resources: {
-      es: {translation: es},
-      en: {translation: en},
-    },
-    react: {useSuspense: false},
-    interpolation: {escapeValue: false},
     compatibilityJSON: 'v3',
+    interpolation: {escapeValue: false},
+    react: {useSuspense: false},
+    resources: {
+      en: {translation: en},
+      es: {translation: es},
+    },
   });
