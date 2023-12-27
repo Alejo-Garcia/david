@@ -6,6 +6,7 @@ import {
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {CountriesList, CountryDetail, SettingsList, SignIn} from '@screens';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const AuthStack = createNativeStackNavigator({
   initialRouteName: 'SignIn',
@@ -21,6 +22,7 @@ const AuthStack = createNativeStackNavigator({
 const CountriesStack = createNativeStackNavigator({
   initialRouteName: 'CountriesList',
   screenOptions: {
+    headerLargeTitle: true,
     headerShown: true,
   },
   screens: {
@@ -32,6 +34,7 @@ const CountriesStack = createNativeStackNavigator({
 const SettingsStack = createNativeStackNavigator({
   initialRouteName: 'SettingsList',
   screenOptions: {
+    headerLargeTitle: true,
     headerShown: true,
   },
   screens: {
@@ -41,9 +44,36 @@ const SettingsStack = createNativeStackNavigator({
 
 const CoreStack = createBottomTabNavigator({
   initialRouteName: 'CountriesStack',
-  screenOptions: {
+  screenOptions: ({route: {name}}) => ({
     headerShown: false,
-  },
+    tabBarActiveTintColor: '#F12C4C',
+    tabBarIcon: ({color, focused, size}) => {
+      let iconName;
+
+      switch (name) {
+        case 'CountriesStack':
+          iconName = 'earth';
+          break;
+        case 'SettingsStack':
+          iconName = 'settings';
+          break;
+        default:
+          iconName = 'help';
+          break;
+      }
+
+      if (!focused) {
+        iconName += '-outline';
+      }
+
+      return <Ionicons color={color} name={iconName} size={size} />;
+    },
+    tabBarItemStyle: {
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    tabBarShowLabel: false,
+  }),
   screens: {
     CountriesStack,
     SettingsStack,
