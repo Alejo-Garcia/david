@@ -27,7 +27,17 @@ module.exports = {
         shorthandLast: true,
       },
     ],
+    'react/react-in-jsx-scope': 'off',
     'sort-destructure-keys/sort-destructure-keys': 2,
+    'sort-imports': [
+      'error',
+      {
+        allowSeparatedGroups: false,
+        ignoreCase: false,
+        ignoreDeclarationSort: true,
+        ignoreMemberSort: false,
+      },
+    ],
     'sort-keys-fix/sort-keys-fix': 'error',
   },
 };
