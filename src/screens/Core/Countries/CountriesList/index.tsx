@@ -1,24 +1,22 @@
-import {useNavigation} from '@react-navigation/native';
-import {SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
+import {Table} from '@components';
+import {extractCountryValues} from '@utils';
+import {SafeAreaView, ScrollView} from 'react-native';
+
+import countries from './countries.json';
+import styles from './styles';
+
+const tableHeader = ['Name', 'Capital', 'Region'];
 
 export function CountriesList(): JSX.Element {
-  const {navigate} = useNavigation();
+  const tableData = extractCountryValues(countries);
 
   return (
-    <SafeAreaView>
-      <View>
-        <TouchableOpacity
-          onPress={() => {
-            navigate('CoreStack', {
-              params: {
-                screen: 'CountryDetail',
-              },
-              screen: 'CountriesStack',
-            });
-          }}>
-          <Text>{'CountriesList'}</Text>
-        </TouchableOpacity>
-      </View>
+    <SafeAreaView style={styles.viewMain}>
+      <ScrollView
+        contentContainerStyle={styles.scrollViewSettings}
+        showsVerticalScrollIndicator={false}>
+        <Table tableData={tableData} tableHeader={tableHeader} />
+      </ScrollView>
     </SafeAreaView>
   );
 }
