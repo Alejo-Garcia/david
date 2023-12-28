@@ -23,11 +23,24 @@ const AuthStack = createNativeStackNavigator({
 });
 
 const CountriesStack = createNativeStackNavigator({
-  initialRouteName: 'CountriesList',
-  screenOptions: {
-    headerLargeTitle: true,
-    headerShown: true,
+  headerLargeTitleStyle: {
+    color: 'white',
   },
+  initialRouteName: 'CountriesList',
+  screenOptions: ({route}) => ({
+    headerLargeTitle: true,
+    headerLargeTitleStyle: {
+      color: 'white',
+    },
+    headerShown: true,
+    headerStyle: {
+      backgroundColor: '#19232D',
+    },
+    headerTitle: route.name === 'CountriesList' ? 'Countries' : 'Country',
+    headerTitleStyle: {
+      color: 'white',
+    },
+  }),
   screens: {
     CountriesList,
     CountryDetail,
@@ -38,7 +51,17 @@ const SettingsStack = createNativeStackNavigator({
   initialRouteName: 'SettingsList',
   screenOptions: {
     headerLargeTitle: true,
+    headerLargeTitleStyle: {
+      color: 'white',
+    },
     headerShown: true,
+    headerStyle: {
+      backgroundColor: '#19232D',
+    },
+    headerTitle: 'Settings',
+    headerTitleStyle: {
+      color: 'white',
+    },
   },
   screens: {
     SettingsList,
@@ -76,6 +99,10 @@ const CoreStack = createBottomTabNavigator({
       justifyContent: 'center',
     },
     tabBarShowLabel: false,
+    tabBarStyle: {
+      backgroundColor: '#19232D',
+      borderColor: '#0F1923',
+    },
   }),
   screens: {
     CountriesStack,
