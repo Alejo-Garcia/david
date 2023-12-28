@@ -20,8 +20,8 @@ const languageDetector: LanguageDetectorAsyncModule = {
           console.log('Error fetching "APP_LANG" from async store', err);
         }
 
-        const bestLng = RNLocalize.findBestLanguageTag(['es', 'en']);
-        callback(bestLng?.languageTag ?? 'es');
+        const bestLng = RNLocalize.findBestLanguageTag(['en', 'es']);
+        callback(bestLng?.languageTag ?? 'en');
 
         return;
       }
