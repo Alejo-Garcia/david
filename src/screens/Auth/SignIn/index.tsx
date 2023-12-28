@@ -2,7 +2,7 @@ import {Button, ControllerTextInput} from '@components';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useNavigation} from '@react-navigation/native';
 import {SignInSchema} from '@schemas';
-import {createRef} from 'react';
+import {createRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {
   Image,
@@ -17,7 +17,7 @@ import {TextInput} from 'react-native';
 import styles from './styles';
 
 export function SignIn(): JSX.Element {
-  const {navigate} = useNavigation();
+  const {reset} = useNavigation();
   const {
     control,
     formState: {errors},
@@ -30,8 +30,16 @@ export function SignIn(): JSX.Element {
     resolver: zodResolver(SignInSchema),
   });
 
-  const onSubmit = () => {
-    navigate('CoreStack');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onSubmit = async () => {
+    setIsLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    setIsLoading(false);
+    reset({
+      index: 0,
+      routes: [{name: 'CoreStack'}],
+    });
   };
 
   const passwordRef = createRef<TextInput>();
@@ -85,8 +93,11 @@ export function SignIn(): JSX.Element {
 
           <View style={styles.viewButton}>
             <Button
+              disabled={isLoading}
               icon={'arrow-forward-outline'}
-              label={'Sign In'}
+              isLoading={isLoading}
+              label={isLoading ? 'Loading...' : 'Sign In'}
+              onLongPress={onSubmit}
               onPress={handleSubmit(onSubmit)}
             />
           </View>
