@@ -70,6 +70,16 @@ const CoreStack = createBottomTabNavigator({
   screenOptions: ({route: {name}}) => ({
     headerShown: false,
     tabBarActiveTintColor: '#F12C4C',
+    tabBarButtonTestID: (() => {
+      switch (name) {
+        case 'CountriesStack':
+          return 'tabBarItemCountries';
+        case 'SettingsStack':
+          return 'tabBarItemSettings';
+        default:
+          return undefined;
+      }
+    })(),
     tabBarIcon: ({color, focused, size}) => {
       let iconName;
 

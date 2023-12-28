@@ -49,7 +49,8 @@ export function SignIn(): JSX.Element {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.viewMain}>
+      style={styles.viewMain}
+      testID={'signInScreen'}>
       <SafeAreaView>
         <View style={styles.viewLogo}>
           <Image
@@ -58,6 +59,7 @@ export function SignIn(): JSX.Element {
               uri: 'https://upload.wikimedia.org/wikipedia/commons/d/db/Blaze_apostas_logo.png',
             }}
             style={styles.imageLogo}
+            testID={'signInLogo'}
           />
         </View>
 
@@ -75,6 +77,7 @@ export function SignIn(): JSX.Element {
               keyboardType={'email-address'}
               name={'email'}
               placeholder={t('AUTH.SIGN_IN.TEXT_INPUT_PLACEHOLDER__EMAIL')}
+              testID={'signInEmailInput'}
               textContentType={'emailAddress'}
               onSubmitEditing={() => passwordRef.current?.focus()}
             />
@@ -88,6 +91,7 @@ export function SignIn(): JSX.Element {
               error={errors.password?.message}
               name={'password'}
               placeholder={t('AUTH.SIGN_IN.TEXT_INPUT_PLACEHOLDER__PASSWORD')}
+              testID={'signInPasswordInput'}
               textContentType={'password'}
               secureTextEntry
             />
@@ -103,6 +107,7 @@ export function SignIn(): JSX.Element {
                   ? t('AUTH.SIGN_IN.BUTTON__LOADING')
                   : t('AUTH.SIGN_IN.BUTTON__SIGN_IN')
               }
+              testID={'signInButton'}
               onLongPress={onSubmit}
               onPress={handleSubmit(onSubmit)}
             />

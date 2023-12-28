@@ -26,7 +26,7 @@ export function SettingsList(): JSX.Element {
   };
 
   return (
-    <SafeAreaView style={styles.viewMain}>
+    <SafeAreaView style={styles.viewMain} testID={'settingsListScreen'}>
       <ScrollView
         contentContainerStyle={styles.scrollViewSettings}
         showsVerticalScrollIndicator={false}>
@@ -38,6 +38,7 @@ export function SettingsList(): JSX.Element {
             label={t(
               'CORE.SETTINGS.SETTINGS_LIST.SETTING_LABEL__PUSH_NOTIFICATIONS',
             )}
+            testID={'settingsListSettingPush'}
             isActive
           />
         </View>
@@ -50,6 +51,7 @@ export function SettingsList(): JSX.Element {
             label={t(
               'CORE.SETTINGS.SETTINGS_LIST.SETTING_LABEL__EMAIL_NOTIFICATIONS',
             )}
+            testID={'settingsListSettingEmail'}
           />
         </View>
 
@@ -61,6 +63,7 @@ export function SettingsList(): JSX.Element {
             label={t(
               'CORE.SETTINGS.SETTINGS_LIST.SETTING_LABEL__USAGE_STATISTICS',
             )}
+            testID={'settingsListSettingUsage'}
           />
         </View>
       </ScrollView>
@@ -74,6 +77,7 @@ export function SettingsList(): JSX.Element {
               ? t('CORE.SETTINGS.SETTINGS_LIST.BUTTON__LOADING')
               : t('CORE.SETTINGS.SETTINGS_LIST.BUTTON__SIGN_OUT')
           }
+          testID={'signOutButton'}
           onPress={signOut}
         />
       </View>

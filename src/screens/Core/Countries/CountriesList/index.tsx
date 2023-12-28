@@ -20,10 +20,11 @@ export function CountriesList(): JSX.Element {
   const tableData = extractCountryValues(countries);
 
   return (
-    <SafeAreaView style={styles.viewMain}>
+    <SafeAreaView style={styles.viewMain} testID={'countriesListScreen'}>
       <ScrollView
         contentContainerStyle={styles.scrollViewSettings}
-        showsVerticalScrollIndicator={false}>
+        showsVerticalScrollIndicator={false}
+        testID={'countriesListScrollView'}>
         <Table tableData={tableData} tableHeader={tableHeader} />
       </ScrollView>
     </SafeAreaView>
