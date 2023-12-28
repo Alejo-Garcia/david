@@ -5,7 +5,7 @@ import {
   createStaticNavigation,
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {CountriesList, CountryDetail, SettingsList, SignIn} from '@screens';
+import {CountriesList, SettingsList, SignIn} from '@screens';
 import {StatusBar} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -27,7 +27,7 @@ const CountriesStack = createNativeStackNavigator({
     color: 'white',
   },
   initialRouteName: 'CountriesList',
-  screenOptions: ({route}) => ({
+  screenOptions: {
     headerLargeTitle: true,
     headerLargeTitleStyle: {
       color: 'white',
@@ -36,14 +36,13 @@ const CountriesStack = createNativeStackNavigator({
     headerStyle: {
       backgroundColor: '#19232D',
     },
-    headerTitle: route.name === 'CountriesList' ? 'Countries' : 'Country',
+    headerTitle: 'Countries',
     headerTitleStyle: {
       color: 'white',
     },
-  }),
+  },
   screens: {
     CountriesList,
-    CountryDetail,
   },
 });
 
