@@ -4,6 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import {SignInSchema} from '@schemas';
 import {createRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
+import {useTranslation} from 'react-i18next';
 import {
   Image,
   KeyboardAvoidingView,
@@ -17,6 +18,7 @@ import {TextInput} from 'react-native';
 import styles from './styles';
 
 export function SignIn(): JSX.Element {
+  const {t} = useTranslation();
   const {reset} = useNavigation();
   const {
     control,
@@ -60,7 +62,7 @@ export function SignIn(): JSX.Element {
         </View>
 
         <View style={styles.viewTitle}>
-          <Text style={styles.textTitle}>{'Sign in to your account'}</Text>
+          <Text style={styles.textTitle}>{t('AUTH.SIGN_IN.TEXT__TITLE')}</Text>
         </View>
 
         <View style={styles.viewForm}>
@@ -72,7 +74,7 @@ export function SignIn(): JSX.Element {
               error={errors.email?.message}
               keyboardType={'email-address'}
               name={'email'}
-              placeholder={'Email address'}
+              placeholder={t('AUTH.SIGN_IN.TEXT_INPUT_PLACEHOLDER__EMAIL')}
               textContentType={'emailAddress'}
               onSubmitEditing={() => passwordRef.current?.focus()}
             />
@@ -85,7 +87,7 @@ export function SignIn(): JSX.Element {
               enterKeyHint={'done'}
               error={errors.password?.message}
               name={'password'}
-              placeholder={'Password'}
+              placeholder={t('AUTH.SIGN_IN.TEXT_INPUT_PLACEHOLDER__PASSWORD')}
               textContentType={'password'}
               secureTextEntry
             />
@@ -96,7 +98,11 @@ export function SignIn(): JSX.Element {
               disabled={isLoading}
               icon={'arrow-forward-outline'}
               isLoading={isLoading}
-              label={isLoading ? 'Loading...' : 'Sign In'}
+              label={
+                isLoading
+                  ? t('AUTH.SIGN_IN.BUTTON__LOADING')
+                  : t('AUTH.SIGN_IN.BUTTON__SIGN_IN')
+              }
               onLongPress={onSubmit}
               onPress={handleSubmit(onSubmit)}
             />

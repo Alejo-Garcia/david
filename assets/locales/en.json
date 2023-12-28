@@ -1,5 +1,34 @@
 {
-  "EXAMPLE_SCREEN": {
-    "EXAMPLE_COMPONENT__DESCRIPTION": "Example text, {{ value }}"
+  "AUTH": {
+    "SIGN_IN": {
+      "BUTTON__LOADING": "Loading...",
+      "BUTTON__SIGN_IN": "Sign In",
+      "TEXT__TITLE": "Sign in to your account",
+      "TEXT_INPUT_PLACEHOLDER__EMAIL": "Email address",
+      "TEXT_INPUT_PLACEHOLDER__PASSWORD": "Password"
+    }
+  },
+  "CORE": {
+    "COUNTRIES": {
+      "COUNTRIES_LIST": {
+        "HEADER__TITLE": "Countries",
+        "TABLE_HEADER__CAPITAL": "Capital",
+        "TABLE_HEADER__NAME": "Name",
+        "TABLE_HEADER__REGION": "Region"
+      }
+    },
+    "SETTINGS": {
+      "SETTINGS_LIST": {
+        "BUTTON__LOADING": "Loading...",
+        "BUTTON__SIGN_OUT": "Sign Out",
+        "HEADER__TITLE": "Settings",
+        "SETTING_DESCRIPTION__PUSH_NOTIFICATIONS": "Toggle sending of push notifications",
+        "SETTING_LABEL__PUSH_NOTIFICATIONS": "Push notifications",
+        "SETTING_DESCRIPTION__EMAIL_NOTIFICATIONS": "Toggle sending of email notifications",
+        "SETTING_LABEL__EMAIL_NOTIFICATIONS": "Email notifications",
+        "SETTING_DESCRIPTION__USAGE_STATISTICS": "Toggle sending of usage statistics",
+        "SETTING_LABEL__USAGE_STATISTICS": "Data collection"
+      }
+    }
   }
 }

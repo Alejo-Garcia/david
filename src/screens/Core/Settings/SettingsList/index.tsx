@@ -1,11 +1,13 @@
 import {Button, Setting} from '@components';
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {SafeAreaView, ScrollView, View} from 'react-native';
 
 import styles from './styles';
 
 export function SettingsList(): JSX.Element {
+  const {t} = useTranslation();
   const {reset} = useNavigation();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -27,23 +29,35 @@ export function SettingsList(): JSX.Element {
         showsVerticalScrollIndicator={false}>
         <View style={styles.viewSetting}>
           <Setting
-            description={'Toggle reception of push notifications'}
-            label={'Push notifications'}
+            description={t(
+              'CORE.SETTINGS.SETTINGS_LIST.SETTING_DESCRIPTION__PUSH_NOTIFICATIONS',
+            )}
+            label={t(
+              'CORE.SETTINGS.SETTINGS_LIST.SETTING_LABEL__PUSH_NOTIFICATIONS',
+            )}
             isActive
           />
         </View>
 
         <View style={styles.viewSetting}>
           <Setting
-            description={'Toggle reception of email notifications'}
-            label={'Email notifications'}
+            description={t(
+              'CORE.SETTINGS.SETTINGS_LIST.SETTING_DESCRIPTION__EMAIL_NOTIFICATIONS',
+            )}
+            label={t(
+              'CORE.SETTINGS.SETTINGS_LIST.SETTING_LABEL__EMAIL_NOTIFICATIONS',
+            )}
           />
         </View>
 
         <View style={styles.viewSetting}>
           <Setting
-            description={'Toggle sending usage statistics'}
-            label={'Data collection'}
+            description={t(
+              'CORE.SETTINGS.SETTINGS_LIST.SETTING_DESCRIPTION__USAGE_STATISTICS',
+            )}
+            label={t(
+              'CORE.SETTINGS.SETTINGS_LIST.SETTING_LABEL__USAGE_STATISTICS',
+            )}
           />
         </View>
       </ScrollView>
@@ -52,7 +66,11 @@ export function SettingsList(): JSX.Element {
         <Button
           disabled={isLoading}
           isLoading={isLoading}
-          label={isLoading ? 'Loading...' : 'Sign Out'}
+          label={
+            isLoading
+              ? t('CORE.SETTINGS.SETTINGS_LIST.BUTTON__LOADING')
+              : t('CORE.SETTINGS.SETTINGS_LIST.BUTTON__SIGN_OUT')
+          }
           onPress={signOut}
         />
       </View>
