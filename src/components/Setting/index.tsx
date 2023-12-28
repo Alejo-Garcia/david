@@ -14,7 +14,7 @@ export function Setting({description, isActive, label}: Props): JSX.Element {
         <Text style={styles.textDescription}>{description}</Text>
       </View>
 
-      <View style={styles.viewSwitch}>
+      <View>
         <Switch
           thumbColor={'#F4F3F4'}
           trackColor={{false: '#767577', true: '#F12C4C'}}
