@@ -1,4 +1,5 @@
 import './i18n';
+import {initializeAxios} from '@config';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
   StaticParamList,
@@ -6,18 +7,12 @@ import {
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {CountriesList, SettingsList, SignIn} from '@screens';
-import axios from 'axios';
-import {configure} from 'axios-hooks';
 import {StatusBar} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 StatusBar.setBarStyle('light-content');
 
-const axiosInstance = axios.create({
-  baseURL: 'https://restcountries.com/v3.1',
-});
-
-configure({axios: axiosInstance});
+initializeAxios();
 
 const AuthStack = createNativeStackNavigator({
   initialRouteName: 'SignIn',
