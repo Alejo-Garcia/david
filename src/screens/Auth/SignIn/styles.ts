@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   viewButton: {
-    marginTop: 8,
+    marginTop: 0,
   },
   viewForm: {
     marginHorizontal: 16,
