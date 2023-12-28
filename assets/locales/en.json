@@ -11,10 +11,12 @@
   "CORE": {
     "COUNTRIES": {
       "COUNTRIES_LIST": {
+        "BUTTON__ERROR": "Try again",
         "HEADER__TITLE": "Countries",
         "TABLE_HEADER__CAPITAL": "Capital",
         "TABLE_HEADER__NAME": "Name",
-        "TABLE_HEADER__REGION": "Region"
+        "TABLE_HEADER__REGION": "Region",
+        "TEXT__ERROR": "We had a problem fetching the results"
       }
     },
     "SETTINGS": {
