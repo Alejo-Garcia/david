@@ -3,7 +3,11 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   scrollViewSettings: {
     marginHorizontal: 8,
-    marginTop: 8,
+    paddingTop: 8,
+  },
+  viewButton: {
+    marginBottom: 8,
+    marginHorizontal: 8,
   },
   viewMain: {
     backgroundColor: '#19232D',
