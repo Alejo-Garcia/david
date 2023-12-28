@@ -1,4 +1,5 @@
 import {Table} from '@components';
+import {useHeaderTitle} from '@hooks';
 import {extractCountryValues} from '@utils';
 import {useTranslation} from 'react-i18next';
 import {SafeAreaView, ScrollView} from 'react-native';
@@ -8,6 +9,8 @@ import styles from './styles';
 
 export function CountriesList(): JSX.Element {
   const {t} = useTranslation();
+
+  useHeaderTitle('CORE.COUNTRIES.COUNTRIES_LIST.HEADER__TITLE');
 
   const tableHeader = [
     t('CORE.COUNTRIES.COUNTRIES_LIST.TABLE_HEADER__NAME'),

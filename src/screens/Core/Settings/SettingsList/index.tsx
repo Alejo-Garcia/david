@@ -1,4 +1,5 @@
 import {Button, Setting} from '@components';
+import {useHeaderTitle} from '@hooks';
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
 import {useTranslation} from 'react-i18next';
@@ -9,6 +10,8 @@ import styles from './styles';
 export function SettingsList(): JSX.Element {
   const {t} = useTranslation();
   const {reset} = useNavigation();
+
+  useHeaderTitle('CORE.SETTINGS.SETTINGS_LIST.HEADER__TITLE');
 
   const [isLoading, setIsLoading] = useState(false);
 

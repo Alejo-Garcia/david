@@ -8,6 +8,9 @@
       "@components": [
         "./src/components"
       ],
+      "@hooks": [
+        "./src/hooks"
+      ],
       "@schemas": [
         "./src/schemas"
       ],
