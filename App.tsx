@@ -6,7 +6,10 @@ import {
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {CountriesList, CountryDetail, SettingsList, SignIn} from '@screens';
+import {StatusBar} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
+StatusBar.setBarStyle('light-content');
 
 const AuthStack = createNativeStackNavigator({
   initialRouteName: 'SignIn',
